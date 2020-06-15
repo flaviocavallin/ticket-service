@@ -1,0 +1,27 @@
+version: '2.0'
+
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+      - "33060:3306"
+    environment:
+      - "MYSQL_PASSWORD=root"
+      - "MYSQL_DATABASE=ticket-service"
+      - "MYSQL_ROOT_PASSWORD=root"
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    restart: always
+  app:
+    build: .
+    container_name: app
+    image: app
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      - "SPRING_PROFILES_ACTIVE=local"
+      - "SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ticket-service"
+      - "SPRING_DATASOURCE_USERNAME=root"
+      - "SPRING_DATASOURCE_PASSWORD=root"
+    depends_on:
+      - mysql

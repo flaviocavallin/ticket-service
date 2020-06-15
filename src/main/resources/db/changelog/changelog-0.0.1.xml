@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="fcavallin">
+        <createTable tableName="passengers">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="fcavallin">
+        <createTable tableName="airports">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="iata_code" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="airports" columnNames="iata_code" constraintName="UK_AIRPORTS_01"/>
+    </changeSet>
+
+    <changeSet id="3" author="fcavallin">
+        <createTable tableName="flights">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="departure_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="origin_airport_id" type="bigint">
+                <constraints foreignKeyName="FK_FLIGHTS_AIRPORT_ID_01" referencedColumnNames="id"
+                             referencedTableName="airports" nullable="false"/>
+            </column>
+            <column name="destination_airport_id" type="bigint">
+                <constraints foreignKeyName="FK_FLIGHTS_AIRPORT_ID_02" referencedColumnNames="id"
+                             referencedTableName="airports" nullable="false"/>
+            </column>
+            <column name="version" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="fcavallin">
+        <createTable tableName="tickets">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="flight_id" type="bigint">
+                <constraints foreignKeyName="FK_TICKETS_FLIGHT_ID_01" referencedColumnNames="id"
+                             referencedTableName="flights" nullable="false"/>
+            </column>
+            <column name="passenger_id" type="bigint">
+                <constraints foreignKeyName="FK_TICKETS_PASSENGER_ID_01" referencedColumnNames="id"
+                             referencedTableName="passengers" nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_luggage_storaged" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
+
+

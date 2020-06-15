@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "6e1ba7d7-da1c-4f8b-a3ab-cded3cad8576",
+		"name": "ticket-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Aiport by code",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/airports/code/EZE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"airports",
+						"code",
+						"EZE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create Aiport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"iataCode\": \"DUB\", \"name\": \"Dublin Airport\", \"cityName\": \"Dublin\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/airports",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"airports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Passenger by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/passengers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"passengers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create Passenger",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"passenger1\", \"dateOfBirth\":\"1980-01-01\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/passengers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"passengers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Flight by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/flights/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"flights",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create Flight",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"departureDate\": \"2020-01-01 23:00\", \"arrivalDate\": \"2020-01-02 17:00\", \"iataCodeFrom\": \"EZE\", \"iataCodeTO\": \"DUB\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/tickets/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"tickets",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create Ticket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"flightId\": 1, \"passengerId\": 1, \"price\": \"1300\", \"luggageInStorage\": true}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket-service/api/v1/tickets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket-service",
+						"api",
+						"v1",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
